@@ -1,0 +1,2 @@
+This section focuses on basics to use F# to integrate with databases.
+
