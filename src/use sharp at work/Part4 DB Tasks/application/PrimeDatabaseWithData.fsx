@@ -61,7 +61,7 @@ let generateCustomerImport =
     <*> generateEmail()
     <*> generateAge()
 
-let insertAll = 
+let insertAll() = 
     use db = Sql.GetDataContext()
 
     db.DataContext.Log <- Console.Out
@@ -72,11 +72,11 @@ let insertAll =
         if counter % 1000 = 0 then
             db.DataContext.SubmitChanges()
 
-        let count = 1000
-        let generator = FsCheck.Gen.sample 0 count generateCustomerImport
+    let count = 1000
+    let generator = FsCheck.Gen.sample 0 count generateCustomerImport
 
-        generator |> List.iteri insertOne
-        db.DataContext.SubmitChanges()
+    generator |> List.iteri insertOne
+    db.DataContext.SubmitChanges()
 
 #time
 insertAll()
