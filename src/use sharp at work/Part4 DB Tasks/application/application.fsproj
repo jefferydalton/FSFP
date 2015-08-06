@@ -63,6 +63,7 @@
     <Compile Include="DBLib.fs" />
     <Compile Include="TestCustomer.fs" />
     <None Include="PrimeDatabaseWithData.fsx" />
+    <None Include="ETLSample.fsx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsCheck">

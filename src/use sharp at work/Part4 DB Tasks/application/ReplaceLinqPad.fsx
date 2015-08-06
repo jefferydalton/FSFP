@@ -18,8 +18,8 @@ let db = Sql.GetDataContext()
 db.DataContext.Log <- Console.Out
 
 query {
-    for c in db.CustomerImport do
-    where (c.EmailAddress.EndsWith("gmail.com"))
+    for c in db.Customer do
+    where (c.Email.EndsWith("gmail.com"))
     select c
     count
 }
