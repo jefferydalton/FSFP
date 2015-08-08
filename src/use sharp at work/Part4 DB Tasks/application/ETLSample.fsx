@@ -37,18 +37,15 @@ let makeTargetCustomer (sourceCustomer:SourceSql.ServiceTypes.CustomerImport) =
 let transferAll() = 
     use sourceDb = SourceSql.GetDataContext()
     use targetDb = TargetSql.GetDataContext()
-
+    
     let insertOne counter customer = 
         targetDb.Customer.InsertOnSubmit customer
-
-        if counter % 1000 = 0 then
+        if counter % 1000 = 0 then 
             targetDb.DataContext.SubmitChanges()
             printfn "...%i records transfered" counter
-
     sourceDb.CustomerImport
     |> Seq.map makeTargetCustomer
     |> Seq.iteri insertOne
-
     targetDb.DataContext.SubmitChanges()
     printfn "Done"
 
